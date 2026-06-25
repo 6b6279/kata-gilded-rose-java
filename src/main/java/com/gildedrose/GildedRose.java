@@ -61,11 +61,11 @@ class GildedRose {
         }
     }
 
-    private void modifyQuality(Item item, int steps) {
+    private void modifyQuality(Item item, int delta) {
         if (item == null) {
             return;
         }
 
-        item.quality = Math.clamp(item.quality + steps, 0, CURRENT_EXPANSION_QUALITY_CAP);
+        item.quality = Math.clamp(item.quality + delta, 0, CURRENT_EXPANSION_QUALITY_CAP);
     }
 }
