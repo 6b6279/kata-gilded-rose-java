@@ -14,39 +14,39 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].name.equals(SPECIAL_ITEM_NAME_SULFURAS)) {
+        for (Item currentItem : items) {
+            if (currentItem.name.equals(SPECIAL_ITEM_NAME_SULFURAS)) {
                 // Legendary items don't lose quality over time...
                 // By fire be purged!
                 continue;
             }
 
-            if (!items[i].name.equals(SPECIAL_ITEM_NAME_AGED_BRIE)
-                    && !items[i].name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
-                    modifyQuality(items[i], -1);
+            if (!currentItem.name.equals(SPECIAL_ITEM_NAME_AGED_BRIE)
+                    && !currentItem.name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
+                    modifyQuality(currentItem, -1);
             } else {
-                modifyQuality(items[i], 1);
-                if (items[i].name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
-                        if (items[i].sellIn < 11) {
-                            modifyQuality(items[i], 1);
+                modifyQuality(currentItem, 1);
+                if (currentItem.name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
+                        if (currentItem.sellIn < 11) {
+                            modifyQuality(currentItem, 1);
                         }
 
-                        if (items[i].sellIn < 6) {
-                            modifyQuality(items[i], 1);
+                        if (currentItem.sellIn < 6) {
+                            modifyQuality(currentItem, 1);
                         }
                     }
             }
 
-            items[i].sellIn--;
+            currentItem.sellIn--;
 
-            if (items[i].sellIn < 0) {
-                if (items[i].name.equals(SPECIAL_ITEM_NAME_AGED_BRIE)) {
-                    modifyQuality(items[i], 1);
-                } else if (items[i].name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
+            if (currentItem.sellIn < 0) {
+                if (currentItem.name.equals(SPECIAL_ITEM_NAME_AGED_BRIE)) {
+                    modifyQuality(currentItem, 1);
+                } else if (currentItem.name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
                     // You missed the concert!
-                    modifyQuality(items[i], -50);
+                    modifyQuality(currentItem, -50);
                 } else {
-                    modifyQuality(items[i], -1);
+                    modifyQuality(currentItem, -1);
                 }
             }
         }
