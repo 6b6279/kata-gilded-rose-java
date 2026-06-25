@@ -5,6 +5,7 @@ class GildedRose {
     private final static String SPECIAL_ITEM_NAME_SULFURAS = "Sulfuras, Hand of Ragnaros";
     private final static String SPECIAL_ITEM_NAME_AGED_BRIE = "Aged Brie";
     private final static String SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+    private final static int MIN_QUALITY = 0;
     private final static int CURRENT_EXPANSION_QUALITY_CAP = 50;
 
     Item[] items;
@@ -53,8 +54,9 @@ class GildedRose {
             if (currentItem.name.equals(SPECIAL_ITEM_NAME_AGED_BRIE)) {
                 modifyQuality(currentItem, 1);
             } else if (currentItem.name.equals(SPECIAL_ITEM_NAME_80ETC_BACKSTAGE_PASS)) {
-                // You missed the concert!
-                modifyQuality(currentItem, -50);
+                // You missed the concert... the pass is worthless.
+                // Better luck next time when 90ETC is touring!
+                modifyQuality(currentItem, -CURRENT_EXPANSION_QUALITY_CAP);
             } else {
                 modifyQuality(currentItem, -1);
             }
@@ -66,6 +68,6 @@ class GildedRose {
             return;
         }
 
-        item.quality = Math.clamp(item.quality + delta, 0, CURRENT_EXPANSION_QUALITY_CAP);
+        item.quality = Math.clamp(item.quality + delta, MIN_QUALITY, CURRENT_EXPANSION_QUALITY_CAP);
     }
 }
